@@ -30,6 +30,9 @@ def TranscribeCommand():
     command = ''
 
     # Configure speech recognition
+    audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
+    speech_recognizer = speech_sdk.SpeechRecognizer(speech_config, audio_config)
+    print('Speak now...')
 
 
     # Process speech input
