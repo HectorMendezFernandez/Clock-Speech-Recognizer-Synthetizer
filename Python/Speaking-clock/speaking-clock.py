@@ -63,14 +63,19 @@ def TranscribeCommand():
 
 def TellTime():
     now = datetime.now()
+    # Format the time as a string
     response_text = 'The time is {}:{:02d}'.format(now.hour,now.minute)
 
 
-    # Configure speech synthesis
-    
+     # Configure speech synthesis
+    speech_config.speech_synthesis_voice_name = "en-GB-RyanNeural" #voice type
+    speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
+    #we don't need to use the AudioConfig to process the spoken output because by default it will be played through the default speakers
 
     # Synthesize spoken output
-
+    speak = speech_synthesizer.speak_text_async(response_text).get()
+    if speak.reason != speech_sdk.ResultReason.SynthesizingAudioCompleted:
+        print(speak.reason)
 
     # Print the response
     print(response_text)
