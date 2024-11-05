@@ -29,7 +29,14 @@ def main():
 def TranscribeCommand():
     command = ''
 
-    # Configure speech recognition
+    # # Configure speech recognition using audio file 
+    # current_dir = os.getcwd()
+    # audioFile = current_dir + '\\time.wav'
+    # playsound(audioFile)
+    # audio_config = speech_sdk.AudioConfig(filename=audioFile)
+    # speech_recognizer = speech_sdk.SpeechRecognizer(speech_config, audio_config)
+ 
+    # Configure speech recognition using microphone
     audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
     speech_recognizer = speech_sdk.SpeechRecognizer(speech_config, audio_config)
     print('Speak now...')
