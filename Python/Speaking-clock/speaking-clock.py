@@ -42,7 +42,19 @@ def TranscribeCommand():
     print('Speak now...')
 
 
-    # Process speech input
+   # Process speech input
+    speech = speech_recognizer.recognize_once_async().get()
+    if speech.reason == speech_sdk.ResultReason.RecognizedSpeech:
+        # Print recognized text
+        command = speech.text
+        print(command)
+    else:
+        # Print error message if speech input is not recognized
+        print(speech.reason)
+        if speech.reason == speech_sdk.ResultReason.Canceled:
+            cancellation = speech.cancellation_details
+            print(cancellation.reason)
+            print(cancellation.error_details)
 
 
     # Return the command
